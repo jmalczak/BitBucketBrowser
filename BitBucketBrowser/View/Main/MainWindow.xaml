@@ -1,0 +1,64 @@
+﻿<view:ViewBase x:Class="BitBucketBrowser.View.Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:BitBucketBrowser.View.Controls"
+        xmlns:view="clr-namespace:BitBucketBrowser.View"
+        Icon="../../Resources/Icons/task_icon.png"
+        Title="BitBucket Issue Browser" Height="520" Width="958.9" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <Menu IsMainMenu="True" DockPanel.Dock="Top">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"></DockPanel>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="_File">
+                <MenuItem Header="_Exit" Command="{Binding CloseCommand}"/>
+            </MenuItem>
+            <MenuItem Header="_User">
+                <MenuItem Header="_Log Out" Command="{Binding LogOutCommand}"/>
+            </MenuItem>
+            <MenuItem HorizontalAlignment="Right" IsEnabled="False">
+                <MenuItem.Header>
+                    <TextBlock Text="{Binding CurrentUser.Login}"></TextBlock>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBar.Style>
+                <Style TargetType="{x:Type StatusBar}">
+                    <Setter Property="BorderThickness" Value="0px 1px 0px 0px"></Setter>
+                </Style>
+            </StatusBar.Style>
+            <StatusBarItem>
+                <TextBlock Text="{Binding Status}"></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <controls:QueryControl x:Name="QueryControl"/>
+            </StackPanel>
+            <DataGrid IsReadOnly="True" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Issues}" CanUserAddRows="False" CanUserDeleteRows="False" ColumnWidth="Auto" AutoGenerateColumns="False">
+                <DataGrid.Style>
+                    <Style TargetType="{x:Type DataGrid}">
+                        <Setter  Property="BorderThickness" Value="0" />
+                    </Style>
+                </DataGrid.Style>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Item Id" Binding="{Binding Id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Item Title" Binding="{Binding Title}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Updated At" Binding="{Binding LastUpdatedAt}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</view:ViewBase>

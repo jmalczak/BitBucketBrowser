@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitBucketBrowser.Test", "BitBucketBrowser.Test\BitBucketBrowser.Test.csproj", "{31FA2FB0-755B-44FA-BAD8-6D2270322BD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitBucketBrowser", "BitBucketBrowser\BitBucketBrowser.csproj", "{1E0704B0-3545-4EC6-84E6-FE38BDF4D771}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2} = {CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitBucketBrowser.Bll", "BitBucketBrowser.Bll\BitBucketBrowser.Bll.csproj", "{318733CC-3F4F-444E-819D-E248CB40A52A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2} = {CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitBucketBrowser.Common", "BitBucketBrowser.Common\BitBucketBrowser.Common.csproj", "{95546554-13A8-4C80-A122-8EC86FD9E091}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CBF1FA05-96ED-4B62-BADA-C554C88F66D9}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitBucketBrowser.Dal", "BitBucketBrowser.Dal\BitBucketBrowser.Dal.csproj", "{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31FA2FB0-755B-44FA-BAD8-6D2270322BD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31FA2FB0-755B-44FA-BAD8-6D2270322BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31FA2FB0-755B-44FA-BAD8-6D2270322BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31FA2FB0-755B-44FA-BAD8-6D2270322BD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E0704B0-3545-4EC6-84E6-FE38BDF4D771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E0704B0-3545-4EC6-84E6-FE38BDF4D771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E0704B0-3545-4EC6-84E6-FE38BDF4D771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E0704B0-3545-4EC6-84E6-FE38BDF4D771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{318733CC-3F4F-444E-819D-E248CB40A52A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{318733CC-3F4F-444E-819D-E248CB40A52A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{318733CC-3F4F-444E-819D-E248CB40A52A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{318733CC-3F4F-444E-819D-E248CB40A52A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95546554-13A8-4C80-A122-8EC86FD9E091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95546554-13A8-4C80-A122-8EC86FD9E091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95546554-13A8-4C80-A122-8EC86FD9E091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95546554-13A8-4C80-A122-8EC86FD9E091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
