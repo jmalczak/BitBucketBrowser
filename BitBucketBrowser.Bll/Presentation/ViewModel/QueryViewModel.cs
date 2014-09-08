@@ -16,6 +16,8 @@
     using BitBucketBrowser.Common.Dto.BitBucket;
     using BitBucketBrowser.Common.Extensions;
 
+    using Raven.Abstractions.Extensions;
+
     using Task = System.Threading.Tasks.Task;
 
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
@@ -68,9 +70,8 @@
             {
                 this.currentRepositorySlug = value;
                 this.IsQueryListVisible = value != null;
-                this.PopulateQueriesForCurrentRepository();
-
                 this.OnPropertyChanged();
+                this.PopulateQueriesForCurrentRepository();
             }
         }
 
@@ -98,7 +99,6 @@
             set
             {
                 this.queries = value;
-                this.OnPropertyChanged();
             }
         }
 
@@ -172,19 +172,37 @@
 
         private void PopulateQueriesForCurrentRepository()
         {
-            Task.Factory.StartNew(() => this.queryService.GetQueryiesByRepositorySlug(this.currentRepositorySlug)).ContinueWithUi(
-                result =>
-                {
-                    var selectedQuery = this.Queries.SelectMany(q => q.Children).FirstOrDefault(q => q.Selected);
-                    var queriesByRepositorySlug = result.Result;
+            //Task.Factory.StartNew(() => this.queryService.GetQueryiesByRepositorySlug(this.currentRepositorySlug)).ContinueWithUi(
+            //    result =>
+            //    {
+            //        var selectedQuery = this.Queries.SelectMany(q => q.Children).FirstOrDefault(q => q.Selected);
+            //        var queriesByRepositorySlug = result.Result;
+            //        var selectedQueries = queriesByRepositorySlug.Select(query =>
+            //                new QueryTreeViewModel(
+            //                    query,
+            //                    this.CreateCommands())).ToList();
+
+            //        //selectedQueries.First().Children.First().selected = true;
+
+            //        var qwe = new ObservableCollection<QueryTreeViewModel>(selectedQueries);
+
+            //        this.Queries = qwe;
+            //    });
+
+
+
+            var queriesByRepositorySlug = this.queryService.GetQueryiesByRepositorySlug(this.currentRepositorySlug);
                     var selectedQueries = queriesByRepositorySlug.Select(query =>
                             new QueryTreeViewModel(
                                 query,
                                 this.CreateCommands())).ToList();
 
-                    selectedQueries.First().Children.First().Selected = true;
-                    this.Queries = new ObservableCollection<QueryTreeViewModel>(selectedQueries);
-                });
+                    //selectedQueries.First().Children.First().selected = true;
+
+                    var qwe = new ObservableCollection<QueryTreeViewModel>(selectedQueries);
+
+                    this.Queries.Clear();
+                    this.Queries.AddRange(qwe);
         }
 
         private QueryTreeViewModelCommands CreateCommands()
