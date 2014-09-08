@@ -71,7 +71,7 @@
                 this.currentRepositorySlug = value;
                 this.IsQueryListVisible = value != null;
                 this.OnPropertyChanged();
-                this.PopulateQueriesForCurrentRepository();
+                this.PopulateQueriesAndSetFirstSelected();
             }
         }
 
@@ -108,7 +108,7 @@
         {
             get
             {
-                return this.PopulateQueriesForCurrentRepository;
+                return this.PopulateQueries;
             }
         }
 
@@ -133,7 +133,7 @@
             {
                 return new DelegateCommandOfT<QueryTreeViewModel>(
                     queryTreeViewModel => Task.Factory.StartNew(
-                        () => this.queryService.DeleteUserQuery(queryTreeViewModel.Id)).ContinueWithUi(result => this.PopulateQueriesForCurrentRepository()));
+                        () => this.queryService.DeleteUserQuery(queryTreeViewModel.Id)).ContinueWithUi(result => this.PopulateQueries()));
             }
         }
 
@@ -157,6 +157,42 @@
             this.bitBucketClient.GetRepositories().ContinueWithUi(this.PopulateRepositoriesAndQueries);
         }
 
+        private void PopulateQueriesAndSetFirstSelected()
+        {
+            Task.Factory.StartNew(() => this.GetQueriesForCurrentRepository()).ContinueWithUi(
+                result =>
+                {
+                    this.Queries.Clear();
+                    this.Queries.AddRange(result.Result);
+                    this.SelectAllQuery();
+                });
+        }
+
+        private void PopulateQueries()
+        {
+            Task.Factory.StartNew(() => this.GetQueriesForCurrentRepository()).ContinueWithUi(
+                result =>
+                {
+                    this.Queries.Clear();
+                    this.Queries.AddRange(result.Result);
+                });
+        }
+
+        private void SelectAllQuery()
+        {
+            var globalQueries = this.Queries.FirstOrDefault();
+
+            if (globalQueries != null)
+            {
+                var allItems = globalQueries.Children.FirstOrDefault();
+
+                if (allItems != null)
+                {
+                    allItems.Selected = true;
+                }
+            }
+        }
+
         private void PopulateRepositoriesAndQueries(Task<List<Repository>> repositoryResultTask)
         {
             var resultFromService = repositoryResultTask.Result.OrderBy(repo => repo.Name).ToList();
@@ -170,39 +206,15 @@
             }
         }
 
-        private void PopulateQueriesForCurrentRepository()
+        private ObservableCollection<QueryTreeViewModel> GetQueriesForCurrentRepository()
         {
-            //Task.Factory.StartNew(() => this.queryService.GetQueryiesByRepositorySlug(this.currentRepositorySlug)).ContinueWithUi(
-            //    result =>
-            //    {
-            //        var selectedQuery = this.Queries.SelectMany(q => q.Children).FirstOrDefault(q => q.Selected);
-            //        var queriesByRepositorySlug = result.Result;
-            //        var selectedQueries = queriesByRepositorySlug.Select(query =>
-            //                new QueryTreeViewModel(
-            //                    query,
-            //                    this.CreateCommands())).ToList();
-
-            //        //selectedQueries.First().Children.First().selected = true;
-
-            //        var qwe = new ObservableCollection<QueryTreeViewModel>(selectedQueries);
-
-            //        this.Queries = qwe;
-            //    });
-
-
-
             var queriesByRepositorySlug = this.queryService.GetQueryiesByRepositorySlug(this.currentRepositorySlug);
-                    var selectedQueries = queriesByRepositorySlug.Select(query =>
-                            new QueryTreeViewModel(
-                                query,
-                                this.CreateCommands())).ToList();
+            var selectedQueries = queriesByRepositorySlug.Select(query =>
+                    new QueryTreeViewModel(
+                        query,
+                        this.CreateCommands())).ToList();
 
-                    //selectedQueries.First().Children.First().selected = true;
-
-                    var qwe = new ObservableCollection<QueryTreeViewModel>(selectedQueries);
-
-                    this.Queries.Clear();
-                    this.Queries.AddRange(qwe);
+            return new ObservableCollection<QueryTreeViewModel>(selectedQueries);
         }
 
         private QueryTreeViewModelCommands CreateCommands()

@@ -76,7 +76,9 @@
     <Compile Include="Presentation\ViewModel\Interfaces\IAddEditQueryViewModel.cs" />
     <Compile Include="Presentation\ViewModel\Interfaces\IConvrolViewModel.cs" />
     <Compile Include="Presentation\ViewModel\Interfaces\IQueryViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\Interfaces\IShowIssueWindowViewModel.cs" />
     <Compile Include="Presentation\ViewModel\QueryTreeViewModelCommands.cs" />
+    <Compile Include="Presentation\ViewModel\ShowIssueWindowViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Presentation\ViewModel\Interfaces\IMainWindowViewModel.cs" />

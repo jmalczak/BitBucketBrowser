@@ -78,12 +78,16 @@
     <Compile Include="View\Main\Interfaces\IAddEditQueryWindowView.cs" />
     <Compile Include="View\Main\Interfaces\ILoginWindowView.cs" />
     <Compile Include="View\Main\Interfaces\IMainWindowView.cs" />
+    <Compile Include="View\Main\Interfaces\IShowIssueWindow.cs" />
     <Compile Include="View\Main\Interfaces\IView.cs" />
     <Compile Include="View\Main\LoginWindowView.xaml.cs">
       <DependentUpon>LoginWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Main\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Main\ShowIssueWindowWindow.xaml.cs">
+      <DependentUpon>ShowIssueWindowWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewBase.cs" />
     <Compile Include="App.xaml.cs">
@@ -105,6 +109,10 @@
     <Page Include="View\Main\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Main\ShowIssueWindowWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -43,6 +43,8 @@
             container.RegisterType<ConfigurationService>().As<IConfigurationService>();
             container.RegisterType<AddEditQueryWindow>().As<IAddEditQueryWindowView>();
             container.RegisterType<AddEditQueryViewModel>().As<IAddEditQueryViewModel>();
+            container.RegisterType<ShowIssueWindowWindow>().As<IShowIssueWindow>();
+            container.RegisterType<ShowIssueWindowViewModel>().As<IShowIssueWindowViewModel>();
         }
 
         private static void ConfigureSingleInstances(ContainerBuilder container)
