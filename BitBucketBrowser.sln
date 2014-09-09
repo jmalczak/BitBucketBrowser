@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CBF1FA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitBucketBrowser.Dal", "BitBucketBrowser.Dal\BitBucketBrowser.Dal.csproj", "{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BitBucketBrowser.Setup", "BitBucketBrowser.Setup\BitBucketBrowser.Setup.vdproj", "{93E5D763-D247-41DD-B5BB-B3241753F10E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,8 @@ Global
 		{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF49F4AF-2F2C-48DF-A170-7F545F6C78B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93E5D763-D247-41DD-B5BB-B3241753F10E}.Debug|Any CPU.ActiveCfg = Debug
+		{93E5D763-D247-41DD-B5BB-B3241753F10E}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

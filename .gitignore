@@ -29,3 +29,4 @@ _ReSharper*/
 *.vssscc
 $tf*/
 !.nuget/*
+!setup.exe
