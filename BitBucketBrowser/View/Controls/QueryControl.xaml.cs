@@ -36,14 +36,5 @@
                 this.ViewModel.DisplayIssuesCommand.Execute(value);
             }
         }
-
-        private void _myTree_Selected(object sender, RoutedEventArgs e)
-        {
-            TreeViewItem item = e.OriginalSource as TreeViewItem;
-            if (item != null)
-            {
-                //_currentSelected = item;
-            }
-        }
     }
 }

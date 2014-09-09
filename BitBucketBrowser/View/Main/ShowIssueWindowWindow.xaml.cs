@@ -3,6 +3,7 @@
     using System;
 
     using BitBucketBrowser.Bll.Presentation.ViewModel.Interfaces;
+    using BitBucketBrowser.Common.Dto.BitBucket;
     using BitBucketBrowser.View.Main.Interfaces;
 
     /// <summary>
@@ -10,17 +11,20 @@
     /// </summary>
     public partial class ShowIssueWindowWindow : IShowIssueWindow
     {
-        private readonly Func<string, string, IShowIssueWindowViewModel> viewModelFactory;
+        private readonly Func<Issue, IShowIssueWindowViewModel> viewModelFactory;
 
-        public ShowIssueWindowWindow(Func<string, string, IShowIssueWindowViewModel> viewModelFactory)
+        public ShowIssueWindowWindow(Func<Issue, IShowIssueWindowViewModel> viewModelFactory)
         {
             this.viewModelFactory = viewModelFactory;
             InitializeComponent();
         }
 
-        public void ShowIssueDialog(string issueId, string repoSlug)
+
+        public void ShowIssueDialog(ViewBase owner, Issue issue)
         {
-            this.DataContext = this.viewModelFactory(issueId, repoSlug);
+            this.Owner = owner;
+            this.DataContext = this.viewModelFactory(issue);
+            this.ShowDialog();
         }
     }
 }

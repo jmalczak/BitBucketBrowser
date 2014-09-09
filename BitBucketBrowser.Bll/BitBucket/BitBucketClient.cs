@@ -15,6 +15,8 @@
     [UsedImplicitly]
     public class BitBucketClient : IBitBucketClient
     {
+        private const int QueryLimit = 50;
+
         private readonly IUserService userService;
 
         private readonly IHttpClientWrapper httpClientWrapper;
@@ -57,7 +59,7 @@
             {
                 var issues = new List<Issue>();
 
-                dynamic result = await this.httpClientWrapper.GetAsync(string.Format("api/1.0/repositories/{0}/{1}/issues/?status=!closed", this.userService.GetCurrentUser().UserName, repositorySlug));
+                dynamic result = await this.httpClientWrapper.GetAsync(string.Format("api/1.0/repositories/{0}/{1}/issues/?limit={2}&status=!closed", this.userService.GetCurrentUser().UserName, repositorySlug, QueryLimit));
 
                 foreach (dynamic issue in result.issues)
                 {
@@ -99,7 +101,7 @@
             {
                 var issues = new List<Issue>();
 
-                dynamic result = await this.httpClientWrapper.GetAsync(string.Format("api/1.0/repositories/{0}/{1}/issues/?status=!closed&responsible={0}", this.userService.GetCurrentUser().UserName, repositorySlug));
+                dynamic result = await this.httpClientWrapper.GetAsync(string.Format("api/1.0/repositories/{0}/{1}/issues/?limit={2}&status=!closed&responsible={0}", this.userService.GetCurrentUser().UserName, repositorySlug, QueryLimit));
 
                 foreach (dynamic issue in result.issues)
                 {
@@ -124,10 +126,11 @@
                     await
                     this.httpClientWrapper.GetAsync(
                         string.Format(
-                            "api/1.0/repositories/{0}/{1}/issues/?{2}",
+                            "api/1.0/repositories/{0}/{1}/issues/?limit={3}&{2}",
                             this.userService.GetCurrentUser().UserName,
                             query.RepositorySlug,
-                            query.Query.Value));
+                            query.Query.Value,
+                            QueryLimit));
 
                 foreach (dynamic issue in result.issues)
                 {

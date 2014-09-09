@@ -4,6 +4,7 @@
     using System.Windows.Input;
 
     using BitBucketBrowser.Bll.Presentation.ViewModel.Interfaces;
+    using BitBucketBrowser.Common.Dto.BitBucket;
     using BitBucketBrowser.View.Main.Interfaces;
 
     /// <summary>
@@ -21,7 +22,7 @@
 
         public MainWindow(
             IMainWindowViewModel mainWindowViewModel,
-            IQueryViewModel queryViewModel, 
+            IQueryViewModel queryViewModel,
             Func<IAddEditQueryWindowView> addEditQueryWindowViewFactory,
             Func<IShowIssueWindow> showIssueWindowViewFactory)
         {
@@ -36,6 +37,19 @@
         }
 
         public event Action LogOutAndShowLoginWindow;
+
+        private IMainWindowViewModel MainWindowViewModel
+        {
+            get
+            {
+                return this.DataContext as IMainWindowViewModel;
+            }
+
+            set
+            {
+                this.DataContext = value;
+            }
+        }
 
         public void OpenMain()
         {
@@ -59,17 +73,17 @@
         private void InitializeQueryControlViewModel()
         {
             this.queryViewModel.DisplayIssuesCommand = this.mainWindowViewModel.DisplayIssuesCommand;
-            
+
             this.queryViewModel.AddQuery += (q, c) =>
             {
-                    var addQueryWindow = this.addEditQueryWindowViewFactory();
-                    addQueryWindow.ShowAddDialog(q, c);
+                var addQueryWindow = this.addEditQueryWindowViewFactory();
+                addQueryWindow.ShowAddDialog(q, c);
             };
 
             this.queryViewModel.EditQuery += (q, c) =>
             {
-                    var addQueryWindow = this.addEditQueryWindowViewFactory();
-                    addQueryWindow.ShowEditDialog(q, c);
+                var addQueryWindow = this.addEditQueryWindowViewFactory();
+                addQueryWindow.ShowEditDialog(q, c);
             };
 
             this.QueryControl.DataContext = this.queryViewModel;
@@ -77,19 +91,27 @@
 
         private void InitializeMainViewModel()
         {
-            this.DataContext = this.mainWindowViewModel;
+            this.MainWindowViewModel = this.mainWindowViewModel;
 
             this.mainWindowViewModel.ViewClose += this.Close;
             this.mainWindowViewModel.ViewHide += this.Hide;
             this.mainWindowViewModel.ViewShow += this.Show;
             this.mainWindowViewModel.ViewOpenMain += this.OpenMain;
-            this.mainWindowViewModel.LogOutAndShowLoginWindow += this.LogOutAndShowLoginWindow;
+            this.mainWindowViewModel.LogOutAndShowLoginWindow += this.LogOutAndShowLoginWindowHandler;
+        }
+
+        private void LogOutAndShowLoginWindowHandler()
+        {
+            if (this.LogOutAndShowLoginWindow != null)
+            {
+                this.LogOutAndShowLoginWindow();
+            }
         }
 
         private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {            
+        {
             var showIssueWindow = this.showIssueWindowViewFactory();
-            showIssueWindow.ShowDialog();
+            showIssueWindow.ShowIssueDialog(this, IssuesGrid.SelectedItem as Issue);
         }
     }
 }

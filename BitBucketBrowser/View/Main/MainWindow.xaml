@@ -45,9 +45,13 @@
             <StackPanel Grid.Row="0" Grid.Column="0">
                 <controls:QueryControl x:Name="QueryControl"/>
             </StackPanel>
-            <DataGrid IsReadOnly="True" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Issues}" 
-                      CanUserAddRows="False" CanUserDeleteRows="False" ColumnWidth="Auto" AutoGenerateColumns="False"
-                      MouseDoubleClick="Control_OnMouseDoubleClick">
+            <DataGrid x:Name="IssuesGrid" IsReadOnly="True" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Issues}" 
+                      CanUserAddRows="False" CanUserDeleteRows="False" ColumnWidth="Auto" AutoGenerateColumns="False">
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="Control_OnMouseDoubleClick"></EventSetter>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
                 <DataGrid.Style>
                     <Style TargetType="{x:Type DataGrid}">
                         <Setter  Property="BorderThickness" Value="0" />

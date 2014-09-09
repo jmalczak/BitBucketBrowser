@@ -9,7 +9,7 @@
     <StackPanel>
         <ComboBox ItemsSource="{Binding Repositories}" DisplayMemberPath="Name" SelectedValuePath="Slug" SelectedValue="{Binding CurrentRepositorySlug}">
         </ComboBox>
-        <TreeView ItemsSource="{Binding Queries}" SelectedItemChanged="TreeView_OnSelectedItemChanged" TreeViewItem.Selected="_myTree_Selected">
+        <TreeView ItemsSource="{Binding Queries}" SelectedItemChanged="TreeView_OnSelectedItemChanged">
             <TreeView.Resources>
                 <ContextMenu x:Key="TopLevelUserQuery">
                     <MenuItem Header="Add Query" Command="{Binding Commands.AddNewQueryCommand}" CommandParameter="{Binding}"/>

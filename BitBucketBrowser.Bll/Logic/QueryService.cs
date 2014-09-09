@@ -48,7 +48,7 @@
 
             if (configuration.UserQueries != null)
             {
-                var queryToDelete = configuration.UserQueries.FirstOrDefault();
+                var queryToDelete = configuration.UserQueries.FirstOrDefault(q => q.Id == id);
 
                 if (queryToDelete != null)
                 {

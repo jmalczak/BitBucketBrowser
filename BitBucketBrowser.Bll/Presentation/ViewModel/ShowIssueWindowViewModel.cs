@@ -1,39 +1,37 @@
 ﻿namespace BitBucketBrowser.Bll.Presentation.ViewModel
 {
+    using BitBucketBrowser.Bll.Annotations;
     using BitBucketBrowser.Bll.BitBucket.Interfaces;
     using BitBucketBrowser.Bll.Presentation.ViewModel.Interfaces;
     using BitBucketBrowser.Common.Dto;
+    using BitBucketBrowser.Common.Dto.BitBucket;
 
+    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public class ShowIssueWindowViewModel : NotifyPropertyChangedBase, IShowIssueWindowViewModel
     {
-        private readonly string issueId;
-
-        private readonly string repoSlug;
-
         private readonly IBitBucketClient bitBucketClient;
 
-        private string issueTitle;
+        private readonly Issue issue;
 
-        private string issueContent;
-
-        public ShowIssueWindowViewModel(string issueId, string repoSlug, IBitBucketClient bitBucketClient)
+        public ShowIssueWindowViewModel(IBitBucketClient bitBucketClient, Issue issue)
         {
-            this.issueId = issueId;
-            this.repoSlug = repoSlug;
             this.bitBucketClient = bitBucketClient;
+            this.issue = issue;
+        }
+
+        public string IssueId
+        {
+            get
+            {
+                return this.issue.Id.ToString();
+            }
         }
 
         public string IssueTitle
         {
             get
             {
-                return this.issueTitle;
-            }
-
-            set
-            {
-                this.issueTitle = value;
-                this.OnPropertyChanged();
+                return this.issue.Title;
             }
         }
 
@@ -41,13 +39,7 @@
         {
             get
             {
-                return this.issueContent;
-            }
-
-            set
-            {
-                this.issueContent = value;
-                this.OnPropertyChanged();
+                return this.issue.Content;
             }
         }
     }
