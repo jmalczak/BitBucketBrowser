@@ -15,6 +15,8 @@ Next type query name and query value:
 Query value is based on simple key=value pairs. You can see those key=value pairs in BitBucket issue
 browser when you define search criteria.
 
+![Add new query](https://github.com/jmalczak/BitBucketBrowser/blob/master/Setup/Images/queryBitBucket.png)
+
 ## Requirements
 
 * Microsoft .NET Framework 4.5
