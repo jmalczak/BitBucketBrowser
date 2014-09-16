@@ -22,4 +22,4 @@ browser when you define search criteria.
 
 ## Install link
 
-Download [setup file](https://github.com/jmalczak/BitBucketBrowser/blob/master/Setup/Setup.exe).
+Download [setup file](https://github.com/jmalczak/BitBucketBrowser/raw/master/Setup/setup.exe).
