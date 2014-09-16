@@ -17,11 +17,17 @@
 
         public DataStore(IAppConfigService appConfigService)
         {                
+            // ReSharper disable once UseObjectOrCollectionInitializer
             this.documentStore = new EmbeddableDocumentStore
                                     {
-                                        DataDirectory = appConfigService.GetDatabaseConnectionString(),
-                                        UseEmbeddedHttpServer = true
+                                        DataDirectory = appConfigService.GetDatabaseConnectionString(),                                                                                
                                     };
+
+#if DEBUG
+            this.documentStore.UseEmbeddedHttpServer = true;
+#else 
+            this.documentStore.UseEmbeddedHttpServer = false;
+#endif
 
             this.documentStore.Initialize();
             this.documentStore.RegisterListener(new NonStaleQueryListener());

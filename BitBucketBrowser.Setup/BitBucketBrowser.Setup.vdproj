@@ -730,6 +730,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
     }
@@ -1802,7 +1810,7 @@
         "UpgradeCode" = "8:{D1A14824-6979-4CDE-AA3F-EF4C164A5BFF}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
@@ -2333,7 +2341,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E4150663879E4EB78927E6BA35596F17"
             {
-            "SourcePath" = "8:..\\BitBucketBrowser\\obj\\Debug\\BitBucketBrowser.exe"
+            "SourcePath" = "8:..\\BitBucketBrowser\\obj\\Release\\BitBucketBrowser.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_46089BA2C4A947E2BB63B01DA03F918F"
