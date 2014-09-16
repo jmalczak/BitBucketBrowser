@@ -6,4 +6,4 @@ You can simply define user queries which are impossible to define in BitBucket i
 ## Defining query
 To define query, simply open application. Select repository and right click on User Queries:
 
-![Add new query](Setup/Image/query.png)
+![Add new query](https://github.com/jmalczak/BitBucketBrowser/blob/master/Setup/Images/query.png)
