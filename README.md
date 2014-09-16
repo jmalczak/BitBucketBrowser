@@ -17,9 +17,9 @@ browser when you define search criteria.
 
 ## Requirements
 
-*Microsoft .NET Framework 4.5
-*Administrator privileges
+* Microsoft .NET Framework 4.5
+* Administrator privileges
 
 ## Install link
 
-Setup.exe ![Setup.exe](https://github.com/jmalczak/BitBucketBrowser/blob/master/Setup/Setup.exe)
+Download [setup file](https://github.com/jmalczak/BitBucketBrowser/blob/master/Setup/Setup.exe).
